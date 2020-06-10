@@ -10,6 +10,7 @@ import lombok.ToString;
 @ToString
 public class IssueResponse {
 
+  private Long id;
   private String title;
   private String createdBy;
   private List<String> labels;
@@ -19,8 +20,10 @@ public class IssueResponse {
   private int commentCount;
 
   @Builder
-  public IssueResponse(String title, String createdBy, List<String> labels,
-      String mileStone, LocalDateTime createdTimeAt, List<String> assignee, int commentCount) {
+  public IssueResponse(Long id, String title, String createdBy,
+      List<String> labels, String mileStone, LocalDateTime createdTimeAt,
+      List<String> assignee, int commentCount) {
+    this.id = id;
     this.title = title;
     this.createdBy = createdBy;
     this.labels = labels;

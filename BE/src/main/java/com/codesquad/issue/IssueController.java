@@ -15,6 +15,7 @@ public class IssueController {
   public List<IssueResponse> findAllIssue() {
     LocalDateTime now = LocalDateTime.now();
     IssueResponse i1 = IssueResponse.builder()
+        .id(1L)
         .title("[BE] 개발환경 생성 및 설정")
         .createdBy("102092")
         .labels(Arrays.asList("be"))
@@ -25,6 +26,7 @@ public class IssueController {
         .build();
 
     IssueResponse i2 = IssueResponse.builder()
+        .id(2L)
         .title("[FE] 개발 환경 구축")
         .createdBy("baekCode")
         .labels(Arrays.asList("fe"))
@@ -35,6 +37,7 @@ public class IssueController {
         .build();
 
     IssueResponse i3 = IssueResponse.builder()
+        .id(3L)
         .title("[BE] 개념적, 논리적 DB 설계")
         .createdBy("102092")
         .labels(Arrays.asList("be"))
@@ -45,6 +48,7 @@ public class IssueController {
         .build();
 
     IssueResponse i4 = IssueResponse.builder()
+        .id(4L)
         .title("[BE] Mock API 생성 및 문서 공유")
         .createdBy("102092")
         .labels(Arrays.asList("be", "bug", "documentation", "fe"))
