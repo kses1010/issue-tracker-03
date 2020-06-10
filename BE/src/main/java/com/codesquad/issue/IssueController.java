@@ -2,7 +2,6 @@ package com.codesquad.issue;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IssueController {
 
   @GetMapping
-  public List<IssueResponse> findAllIssue() {
+  public MainResponse findAllIssue() {
     LocalDateTime now = LocalDateTime.now();
     IssueResponse i1 = IssueResponse.builder()
         .id(1L)
@@ -58,6 +57,30 @@ public class IssueController {
         .commentCount(0)
         .build();
 
-    return Arrays.asList(i1, i2, i3, i4);
+    Author a1 = Author.builder().id("102092").nickName("han").build();
+    Author a2 = Author.builder().id("kses1010").nickName("Sosah92").build();
+    Author a3 = Author.builder().id("baekCode").nickName("baekCode").build();
+    Author a4 = Author.builder().id("dev-angelo").nickName("Angelo").build();
+
+    MileStone m1 = new MileStone("1주차");
+    MileStone m2 = new MileStone("1주차");
+    MileStone m3 = new MileStone("1주차");
+
+    Label l1 = Label.builder().name("question").description("Further information is requested")
+        .color("#d876e3").build();
+    Label l2 = Label.builder().name("invalid").description("This doesn't seem right")
+        .color("#e4e669").build();
+    Label l3 = Label.builder().name("help wanted").description("Extra attention is needed")
+        .color("#008672").build();
+    Label l4 = Label.builder().name("be").color("#15b510").build();
+    Label l5 = Label.builder().name("fe").color("#f2b5f1").build();
+
+    return MainResponse.builder()
+        .author(Arrays.asList(a1, a2, a3, a4))
+        .label(Arrays.asList(l1, l2, l3, l4, l5))
+        .mileStones(Arrays.asList(m1, m2, m3))
+        .assignee(Arrays.asList(a1, a2, a3, a4))
+        .issueResponses(Arrays.asList(i1, i2, i3, i4))
+        .build();
   }
 }
