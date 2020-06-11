@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("issue")
+@RequestMapping("issues")
 public class IssueController {
 
   @GetMapping
@@ -63,8 +63,8 @@ public class IssueController {
     Author a4 = Author.builder().id("dev-angelo").nickName("Angelo").build();
 
     MileStone m1 = new MileStone("1주차");
-    MileStone m2 = new MileStone("1주차");
-    MileStone m3 = new MileStone("1주차");
+    MileStone m2 = new MileStone("2주차");
+    MileStone m3 = new MileStone("3주차");
 
     Label l1 = Label.builder().name("question").description("Further information is requested")
         .color("#d876e3").build();
@@ -74,10 +74,14 @@ public class IssueController {
         .color("#008672").build();
     Label l4 = Label.builder().name("be").color("#15b510").build();
     Label l5 = Label.builder().name("fe").color("#f2b5f1").build();
+    Label l6 = Label.builder().name("bug").description("Something isn't working").color("#d73a4a")
+        .build();
+    Label l7 = Label.builder().name("documentation")
+        .description("Improvements or additions to documentation").color("#0075ca").build();
 
     return MainResponse.builder()
         .author(Arrays.asList(a1, a2, a3, a4))
-        .label(Arrays.asList(l1, l2, l3, l4, l5))
+        .label(Arrays.asList(l6, l7, l1, l2, l3, l4, l5))
         .mileStones(Arrays.asList(m1, m2, m3))
         .assignee(Arrays.asList(a1, a2, a3, a4))
         .issueResponses(Arrays.asList(i1, i2, i3, i4))
