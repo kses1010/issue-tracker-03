@@ -1,17 +1,30 @@
 package com.codesquad.issue;
 
+import static com.codesquad.issue.api.ApiResult.OK;
+
+import com.codesquad.issue.api.ApiResult;
+import io.swagger.annotations.Api;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("issues")
+@RequestMapping("api/issues")
 public class IssueController {
 
+  private static final Logger log = LoggerFactory.getLogger(IssueController.class);
+
   @GetMapping
-  public MainResponse findAllIssue() {
+  public ApiResult<MainResponse> findAllIssue() {
     LocalDateTime now = LocalDateTime.now();
     IssueResponse i1 = IssueResponse.builder()
         .id(1L)
@@ -79,12 +92,38 @@ public class IssueController {
     Label l7 = Label.builder().name("documentation")
         .description("Improvements or additions to documentation").color("#0075ca").build();
 
-    return MainResponse.builder()
+    return OK(MainResponse.builder()
         .author(Arrays.asList(a1, a2, a3, a4))
         .label(Arrays.asList(l6, l7, l1, l2, l3, l4, l5))
         .mileStones(Arrays.asList(m1, m2, m3))
         .assignee(Arrays.asList(a1, a2, a3, a4))
         .issueResponses(Arrays.asList(i1, i2, i3, i4))
-        .build();
+        .build());
+  }
+
+  @PostMapping
+  public ApiResult<IssueResponse> createIssue(@RequestBody IssueRequest request) {
+    log.debug("request : {}", request);
+    return OK(IssueResponse.builder()
+        .id(1L)
+        .title(request.getTitle())
+        .body(request.getBody())
+        .build());
+  }
+
+
+  @PutMapping("{id}")
+  public ApiResult<IssueResponse> modifyIssue(
+      @PathVariable(name = "id") Long issueId,
+      @RequestBody IssueRequest request) {
+    log.debug("issueId : {}", issueId);
+    log.debug("request : {}", request);
+    return OK(IssueResponse.builder().build());
+  }
+
+  @DeleteMapping("{id}")
+  public ApiResult<Boolean> deleteIssue(@PathVariable(name = "id") Long issueId) {
+    log.debug("issueId : {}", issueId);
+    return OK(true);
   }
 }
