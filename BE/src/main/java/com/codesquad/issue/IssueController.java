@@ -1,13 +1,14 @@
 package com.codesquad.issue;
 
 import static com.codesquad.issue.api.ApiResult.OK;
+import static java.time.LocalDateTime.now;
 
 import com.codesquad.issue.api.ApiResult;
-import io.swagger.annotations.Api;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public class IssueController {
 
   @GetMapping
   public ApiResult<MainResponse> findAllIssue() {
-    LocalDateTime now = LocalDateTime.now();
+    LocalDateTime now = now();
     IssueResponse i1 = IssueResponse.builder()
         .id(1L)
         .title("[BE] 개발환경 생성 및 설정")
@@ -111,7 +112,6 @@ public class IssueController {
         .build());
   }
 
-
   @PutMapping("{id}")
   public ApiResult<IssueResponse> modifyIssue(
       @PathVariable(name = "id") Long issueId,
@@ -125,5 +125,69 @@ public class IssueController {
   public ApiResult<Boolean> deleteIssue(@PathVariable(name = "id") Long issueId) {
     log.debug("issueId : {}", issueId);
     return OK(true);
+  }
+
+  @GetMapping("{id}")
+  public ResponseEntity<IssueDetail> detailIssue(@PathVariable(name = "id") Long issueId) {
+    Long i1 = 1L;
+    Long i2 = 2L;
+    Long i3 = 3L;
+
+    if (issueId.equals(i1)) {
+      IssueDetail detail = IssueDetail.builder()
+          .id(1L)
+          .title("[BE] 개발환경 생성 및 설정")
+          .contents("### 개발환경을 만들어주세요" + "\n"
+              + "- 개발환경이 어떤게 있을까?" + "\n"
+              + "**bold** 해볼까요?" + "\n"
+          )
+          .createdAt(now())
+          .author(Author.builder()
+              .id("102092")
+              .nickName("han")
+              .avatarUrl(
+                  "https://avatars1.githubusercontent.com/u/22140570?s=40&v=4")
+              .build()
+          )
+          .build();
+      return ResponseEntity.ok(detail);
+    }
+
+    if (issueId.equals(i2)) {
+      IssueDetail detail = IssueDetail.builder()
+          .id(2L)
+          .title("[FE] 개발 환경 구축")
+          .createdAt(now())
+          .author(Author.builder()
+              .id("baekCode")
+              .nickName("baekCode")
+              .avatarUrl(
+                  "https://avatars1.githubusercontent.com/u/44539224?s=40&v=4")
+              .build()
+          )
+          .build();
+      return ResponseEntity.ok(detail);
+    }
+
+    if (issueId.equals(i3)) {
+      IssueDetail detail = IssueDetail.builder()
+          .id(3L)
+          .title("[Team] API문서 공유")
+          .contents("### 문서공유" + "\n"
+              + "[URL 추가](https://github.com/codesquad-member-2020/issue-tracker-03/issues/21)"
+              + "\n"
+          )
+          .createdAt(now())
+          .author(Author.builder()
+              .id("kses1010")
+              .nickName("sunny")
+              .avatarUrl(
+                  "https://avatars3.githubusercontent.com/u/49144662?s=40&v=4")
+              .build()
+          )
+          .build();
+      return ResponseEntity.ok(detail);
+    }
+    return ResponseEntity.ok(null);
   }
 }

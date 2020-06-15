@@ -10,10 +10,12 @@ public class Author {
 
   private String id;
   private String nickName;
+  private String avatarUrl;
 
   @Builder
-  public Author(String id, String nickName) {
+  public Author(String id, String nickName, String avatarUrl) {
     this.id = id;
     this.nickName = nickName;
+    this.avatarUrl = avatarUrl;
   }
 }
