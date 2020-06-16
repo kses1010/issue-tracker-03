@@ -8,14 +8,14 @@ import lombok.ToString;
 @ToString
 public class Author {
 
-  private String id;
-  private String nickName;
-  private String avatarUrl;
+  private String userId;
+  private String name;
+  private String avatarURL;
 
   @Builder
-  public Author(String id, String nickName, String avatarUrl) {
-    this.id = id;
-    this.nickName = nickName;
-    this.avatarUrl = avatarUrl;
+  public Author(String userId, String name, String avatarURL) {
+    this.userId = userId;
+    this.name = name;
+    this.avatarURL = avatarURL;
   }
 }

@@ -13,21 +13,21 @@ public class IssueResponse {
   private Long id;
   private String title;
   private String body;
-  private String createdBy;
-  private List<String> labels;
+  private Author author;
+  private List<Label> labels;
   private String mileStone;
   private LocalDateTime createdTimeAt;
-  private List<String> assignee;
+  private List<Author> assignee;
   private int commentCount;
 
   @Builder
-  public IssueResponse(Long id, String title, String body, String createdBy,
-      List<String> labels, String mileStone, LocalDateTime createdTimeAt,
-      List<String> assignee, int commentCount) {
+  public IssueResponse(Long id, String title, String body, Author author,
+      List<Label> labels, String mileStone, LocalDateTime createdTimeAt,
+      List<Author> assignee, int commentCount) {
     this.id = id;
     this.title = title;
     this.body = body;
-    this.createdBy = createdBy;
+    this.author = author;
     this.labels = labels;
     this.mileStone = mileStone;
     this.createdTimeAt = createdTimeAt;

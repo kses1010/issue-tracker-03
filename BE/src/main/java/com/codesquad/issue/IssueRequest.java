@@ -10,6 +10,6 @@ import lombok.ToString;
 public class IssueRequest {
 
   private String title;
-  private String body;
+  private String contents;
 
 }
