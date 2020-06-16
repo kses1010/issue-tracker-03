@@ -12,7 +12,7 @@ public class IssueResponse {
 
   private Long id;
   private String title;
-  private String body;
+  private String contents;
   private Author author;
   private List<Label> labels;
   private String mileStone;
@@ -21,12 +21,12 @@ public class IssueResponse {
   private int commentCount;
 
   @Builder
-  public IssueResponse(Long id, String title, String body, Author author,
+  public IssueResponse(Long id, String title, String contents, Author author,
       List<Label> labels, String mileStone, LocalDateTime createdTimeAt,
       List<Author> assignee, int commentCount) {
     this.id = id;
     this.title = title;
-    this.body = body;
+    this.contents = contents;
     this.author = author;
     this.labels = labels;
     this.mileStone = mileStone;

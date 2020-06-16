@@ -149,7 +149,7 @@ public class IssueController {
     return OK(IssueResponse.builder()
         .id(1L)
         .title(request.getTitle())
-        .body(request.getContents())
+        .contents(request.getContents())
         .build());
   }
 
