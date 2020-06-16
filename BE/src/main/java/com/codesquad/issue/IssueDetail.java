@@ -9,19 +9,21 @@ import lombok.ToString;
 @ToString
 public class IssueDetail {
 
-  private Long id;
-  private String title;
-  private String contents;
-  private LocalDateTime createdAt;
-  private Author author;
+    private Long id;
+    private String title;
+    private String contents;
+    private LocalDateTime createdAt;
+    private Author author;
+    private boolean isOpen;
 
-  @Builder
-  public IssueDetail(Long id, String title, String contents, LocalDateTime createdAt,
-      Author author) {
-    this.id = id;
-    this.title = title;
-    this.contents = contents;
-    this.createdAt = createdAt;
-    this.author = author;
-  }
+    @Builder
+    public IssueDetail(Long id, String title, String contents, LocalDateTime createdAt,
+            Author author) {
+        this.id = id;
+        this.title = title;
+        this.contents = contents;
+        this.createdAt = createdAt;
+        this.author = author;
+        this.isOpen = true;
+    }
 }
