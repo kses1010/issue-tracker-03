@@ -1,5 +1,6 @@
 package com.codesquad.issue;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Builder;
@@ -19,6 +20,7 @@ public class IssueResponse {
     private LocalDateTime createdTimeAt;
     private List<Author> assignee;
     private int commentCount;
+    @JsonProperty("isOpen")
     private boolean isOpen;
 
     @Builder

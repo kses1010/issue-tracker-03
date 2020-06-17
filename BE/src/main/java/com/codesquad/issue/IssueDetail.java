@@ -1,5 +1,6 @@
 package com.codesquad.issue;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +15,7 @@ public class IssueDetail {
     private String contents;
     private LocalDateTime createdAt;
     private Author author;
+    @JsonProperty("isOpen")
     private boolean isOpen;
 
     @Builder

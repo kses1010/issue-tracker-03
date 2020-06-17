@@ -4,6 +4,7 @@ import static com.codesquad.issue.api.ApiResult.OK;
 import static java.time.LocalDateTime.now;
 
 import com.codesquad.issue.Author;
+import com.codesquad.issue.IssueCreateResponse;
 import com.codesquad.issue.IssueDetail;
 import com.codesquad.issue.IssueRequest;
 import com.codesquad.issue.IssueResponse;
@@ -146,13 +147,9 @@ public class IssueController {
     }
 
     @PostMapping
-    public ApiResult<IssueResponse> createIssue(@RequestBody IssueRequest request) {
+    public ApiResult<IssueCreateResponse> createIssue(@RequestBody IssueRequest request) {
         log.debug("request : {}", request);
-        return OK(IssueResponse.builder()
-                .id(1L)
-                .title(request.getTitle())
-                .contents(request.getContents())
-                .build());
+        return OK(new IssueCreateResponse(1L));
     }
 
     @PutMapping("{id}")
