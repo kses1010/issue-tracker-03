@@ -43,6 +43,9 @@ jobs:
     steps:
       - name: 체크아웃 Github-Action
         uses: actions/checkout@v2
+          
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v2
         
       - name: node.js 12 설치 ${{ matrix.node-version }}
         uses: actions/setup-node@v1
