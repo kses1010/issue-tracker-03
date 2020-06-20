@@ -32,8 +32,8 @@ jobs:
       - name: npm 설치
         run: npm install
         
-      - name: process.env.CI 설정
-        run: unset CI
+      #- name: process.env.CI 설정
+      #  run: unset CI
         
       - name: npm 빌드
-        run: npm run build
+        run: unset CI && npm run build
