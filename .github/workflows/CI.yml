@@ -26,14 +26,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v2
+      #- name: Setup tmate session
+      #  uses: mxschmitt/action-tmate@v2
       
-      - name: process.env.CI 설정
-        run: unset CI
-
       - name: npm 설치
         run: npm install
-
+        
+      - name: process.env.CI 설정
+        run: unset CI
+        
       - name: npm 빌드
         run: npm run build
